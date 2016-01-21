@@ -1,0 +1,134 @@
+snippet library
+abbr    library [ieee];
+options head
+	library ${1:ieee};
+	${0:#:use}
+
+snippet use
+abbr    use [ieee].[std_logic_1164].[all];
+options head
+	use ${1:ieee}.${2:std_logic_1164}.${3:all};
+	${0}
+
+snippet port
+abbr    entity port_clause
+options head
+	${1:CLK} : ${2:in } ${3:std_logic${4:_vector(${5:WIDTH-1\\} ${6:downto\\} ${7:0\\})\}}${0}
+
+snippet generic
+abbr    entity generic_clause
+options head
+	${1:WIDTH} : ${2:integer}${3: := ${4:0\}}${0}
+
+snippet entity
+abbr    entity declaration
+options head
+	entity ${1:name} is
+		generic(
+			${2:#:generic}
+		};
+		port(
+			${3:#:port}
+		);
+	end entity $1;
+	${0}
+
+snippet signal
+abbr    signal declaration
+options head
+	signal ${1:name} : ${3:std_logic${4:_vector(${5:WIDTH-1\\} ${6:downto\\} ${7:0\\})\}}${8: := ${9:(others => '${10:0\\}')\}};${0}
+
+snippet architecture
+abbr    architecture declaration
+options head
+	architecture ${1:behavioral} of ${2:name} is
+		${3:#:signal}
+	begin
+		${0}
+	end architecture $1;
+
+snippet variable
+abbr    variable declaration
+options head
+	variable ${1:name} : ${3:std_logic${4:_vector(${5:WIDTH-1\\} ${6:downto\\} ${7:0\\})\}}${8: := ${9:(others => '${10:0\\}')\}};${0}
+
+snippet if
+abbr    if statement
+options head
+	if ${1:rising_edge(CLK)} then
+		${2:TARGET}
+	${3:#:elsif}
+	${4:else}
+		${0}
+	end if;
+	${0}
+
+snippet elsif
+abbr    elsif statement
+options head
+	elsif ${1:#:condition} then
+		${2:TARGET}
+	${0}
+
+snippet process
+abbr    process declaration
+options head
+	${1:${2:name\}:}process${3:(${4:CLK\}${5:#:,})}
+		${6:#:variable}
+	begin
+		${7:TARGET}
+	end process;
+
+snippet with
+abbr    with-select statement
+options head
+	with ${1:signal} select
+		${2:signal} when ${3:others;}
+		${0}
+
+snippet alias
+abbr    alias declaration
+options head
+	alias ${1:name} : ${3:std_logic${4:_vector(${5:WIDTH-1\\} ${6:downto\\} ${7:0\\})\}} is ${8:name}${9:(${10:WIDTH-1\} ${11:downto\} ${12:0\})};
+	${0}
+
+snippet std_logic_vector
+alias   slv
+abbr    std_logic_vector([range])
+options word
+	std_logic_vector(${1:${2:WIDTH-1\} ${3:downto\} ${4:0\}})
+
+snippet unsigned
+abbr    unsigned([range])
+options word
+	unsigned(${1:${2:WIDTH-1\} ${3:downto\} ${4:0\}})
+
+snippet signed
+abbr    signed([range])
+options word
+	signed(${1:${2:WIDTH-1\} ${3:downto\} ${4:0\}})
+
+snippet std_logic
+alias   sl
+options word
+	std_logic
+
+snippet integer
+alias   int
+abbr    integer [range]
+options word
+	integer ${1:${2:0\} ${3:to\} ${4:31\}}
+
+snippet positive
+alias   pos
+abbr    positive [range]
+options word
+	positive ${1:${2:1\} ${3:to\} ${4:31\}}
+
+snippet string
+alias   str
+abbr    string([range])
+options word
+	string(${1:${2:1\} ${3:to\} ${4:31\}})
+
+
